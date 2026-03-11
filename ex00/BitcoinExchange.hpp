@@ -17,6 +17,8 @@ class Btc
 	Btc& operator=(const Btc &copy);
 	
 	std::map<std::string , double> db;
+	double result_d;
+	double rate;
 
 	void	print(void) const;
 
@@ -24,6 +26,8 @@ class Btc
 	int		read_input(const std::string& input_name);
 	bool	check_date(const std::string& date);
 	bool	check_value(const std::string& value);
+	bool	check_line_input(const std::string& line);
+	bool	get_rate(const std::string& date);
 
 };
 

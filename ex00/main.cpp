@@ -11,10 +11,10 @@ int main (int argc, char** argv)
 	std::string file_name = argv[1];
 
 	Btc wallet;
-	wallet.read_db("data2.csv");
+	wallet.read_db("data.csv");
 	wallet.read_input(file_name);
 	
-	wallet.print();
+//	wallet.print();
 	
 	return(0);
 }
