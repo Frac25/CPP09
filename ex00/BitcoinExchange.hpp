@@ -17,7 +17,7 @@ class Btc
 	Btc& operator=(const Btc &copy);
 	
 	std::map<std::string , double> db;
-	double result_d;
+	double value_d;
 	double rate;
 
 	void	print(void) const;

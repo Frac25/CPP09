@@ -13,8 +13,6 @@ int main (int argc, char** argv)
 	Btc wallet;
 	wallet.read_db("data.csv");
 	wallet.read_input(file_name);
-	
-//	wallet.print();
-	
+		
 	return(0);
 }

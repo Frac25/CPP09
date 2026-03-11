@@ -1,6 +1,6 @@
 #include"BitcoinExchange.hpp"
 
-Btc::Btc() : result_d(0)
+Btc::Btc() : value_d(0), rate(0)
 {
 }
 
@@ -8,13 +8,15 @@ Btc::~Btc()
 {
 }
 
-Btc::Btc(const Btc &copy) : db(copy.db)
+Btc::Btc(const Btc &copy) : db(copy.db), value_d(copy.value_d), rate(copy.rate)
 {
 }
 
 Btc& Btc::operator=(const Btc &copy)
 {
 	db = copy.db;
+	value_d = copy.value_d;
+	rate = copy.rate;
 	return(*this);
 }
 
@@ -74,7 +76,7 @@ int Btc::read_input(const std::string& input_name)
 					if(!get_rate(date))
 						std::cout << "error: no earlier data available " << date << std::endl;
 					else
-						std::cout << date << " => " << value << " = " << rate * result_d << std::endl;
+						std::cout << date << " => " << value << " = " << rate * value_d << std::endl;
 				}
 			}
 		}
@@ -126,24 +128,24 @@ bool Btc::check_value(const std::string& value)
 {
 	char * end;
 
-	result_d = std::strtod(value.c_str(), &end);
+	value_d = std::strtod(value.c_str(), &end);
 
 	if(*end != '\0')
 	{
 		std::cout << "error: rate KO " << std::endl;
-		result_d = 0;
+		value_d = 0;
 		return(false);
 	}
-	if(result_d < 0)
+	if(value_d < 0)
 	{
 		std::cout << "error: not a positive number " << std::endl;
-		result_d = 0;
+		value_d = 0;
 		return(false);
 	}
-	if(result_d > 1000)
+	if(value_d > 1000)
 	{
 		std::cout << "error: too large number " << std::endl;
-		result_d = 0;
+		value_d = 0;
 		return(false);
 	}
 	return(true);
