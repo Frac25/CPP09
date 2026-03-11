@@ -4,7 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-# include <map>
+#include <map>
+#include <cstdlib>
 
 class Btc
 {
@@ -17,9 +18,12 @@ class Btc
 	
 	std::map<std::string , double> db;
 
-	int read_db(const std::string& db_name);
-	int read_input(const std::string& input_name);
+	void	print(void) const;
 
+	int		read_db(const std::string& db_name);
+	int		read_input(const std::string& input_name);
+	bool	check_date(const std::string& date);
+	bool	check_value(const std::string& value);
 
 };
 
