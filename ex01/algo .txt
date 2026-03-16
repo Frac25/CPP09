@@ -1,0 +1,9 @@
+Résumé de l’algorithme
+
+lire l’expression caractère par caractère
+si nombre → push dans la pile
+si opérateur →pop 2 nombres
+faire l’opération
+push le résultat
+
+à la fin la pile doit contenir 1 valeur

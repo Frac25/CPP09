@@ -1,7 +1,7 @@
-NAME = btc
+NAME = RPN
 
 PROG =	main\
-		BitcoinExchange
+		RPN
 
 OBJ_DIR = obj
 
