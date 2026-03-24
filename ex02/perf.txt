@@ -1,0 +1,52 @@
+A. Coût des insertions
+std::vector
+mainChain.insert(pos, value);
+
+👉 coûte :
+
+déplacement de tous les éléments après pos
+
+mémoire contiguë
+
+➡️ O(n) par insertion
+➡️ rapide en pratique (cache-friendly)
+
+std::deque
+
+👉 structure en blocs (pas contiguë)
+
+Insertion :
+
+moins de déplacement global
+
+mais plus de gestion interne
+
+➡️ aussi O(n)
+➡️ souvent plus lent que vector dans ce cas
+
+🔹 B. std::lower_bound
+
+Les deux utilisent :
+
+std::lower_bound(...)
+
+👉 fonctionne en O(log n) dans les deux cas
+MAIS :
+
+vector → accès mémoire direct 🔥
+
+deque → accès indirect (moins cache-friendly)
+
+➡️ encore un point pour vector
+
+🔹 C. Accès input[i]
+
+Les deux font :
+
+input[i]
+
+👉 ok pour les deux, MAIS :
+
+vector → accès direct
+
+deque → un peu plus lent
