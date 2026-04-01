@@ -7,3 +7,11 @@ faire l’opération
 push le résultat
 
 à la fin la pile doit contenir 1 valeur
+
+./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+
+./RPN "7 7 * 7 -"
+
+./RPN "1 2 * 2 / 2 * 2 4 - +"
+
+./RPN "(1 + 1)"

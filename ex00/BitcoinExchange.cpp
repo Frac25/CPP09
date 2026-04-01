@@ -160,7 +160,7 @@ bool Btc::check_line_input(const std::string& line)
 	return(true);
 }
 
-bool	Btc::get_rate(const std::string& date)
+bool Btc::get_rate(const std::string& date)
 {
 	std::map<std::string, double>::iterator it;
 

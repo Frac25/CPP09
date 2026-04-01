@@ -52,10 +52,9 @@ std::ostream& operator<<(std::ostream& os, const std::deque<int> &deq)
 
 void PmergeMe::sort(std::vector<int>& vec)
 {
-	//Start sort vec
+	//recursive end condition
 	if(vec.size() <=1)
 		return;
-//	std::cout << "vec : " << vec << std::endl;
 
 	//make_pairs
 	std::vector<std::pair< int, int > > pairs;
@@ -78,7 +77,6 @@ void PmergeMe::sort(std::vector<int>& vec)
 			pairs[i].first = tmp;
 		}
 	}
-//	std::cout << pairs << std::endl;
 
 	//split_pairs
 	std::vector<int> vecb;
@@ -88,16 +86,11 @@ void PmergeMe::sort(std::vector<int>& vec)
 		vecb.push_back(pairs[i].second);
 		vecl.push_back(pairs[i].first);
 	}
-//	std::cout << "vecb :" << vecb << std::endl;
-//	std::cout << "vecl :" << vecl << std::endl;
 
 	//Recursiv sort
 	sort(vecb);
 
 	//insert little in big
-//	std::cout << "Vecb : " << vecb << std::endl;
-//	std::cout << "Vecl : " << vecl << std::endl;
-
 	for(size_t i = 0; i < vecl.size(); i++)
 	{
 		std::vector<int>::iterator pos = std::lower_bound(vecb.begin(), vecb.end(), vecl[i]);
@@ -113,7 +106,6 @@ void PmergeMe::sort(std::deque<int>& deq)
 	//Start sort deq
 	if(deq.size() <=1)
 		return;
-//	std::cout << "deq : " << deq << std::endl;
 
 	//make_pairs
 	std::vector<std::pair< int, int > > pairs;
@@ -132,7 +124,6 @@ void PmergeMe::sort(std::deque<int>& deq)
 		if(pairs[i].second < pairs[i].first)
 			std::swap(pairs[i].second, pairs[i].first);
 	}
-//	std::cout << pairs << std::endl;
 
 	//split_pairs
 	std::deque<int> deqb;
@@ -142,16 +133,11 @@ void PmergeMe::sort(std::deque<int>& deq)
 		deqb.push_back(pairs[i].second);
 		deql.push_back(pairs[i].first);
 	}
-//	std::cout << "deqb :" << deqb << std::endl;
-//	std::cout << "deql :" << deql << std::endl;
 
 	//Recursiv sort
 	sort(deqb);
 
 	//insert little in big
-//	std::cout << "Deqb : " << deqb << std::endl;
-//	std::cout << "Deql : " << deql << std::endl;
-
 	for(size_t i = 0; i < deql.size(); i++)
 	{
 		std::deque<int>::iterator pos = std::lower_bound(deqb.begin(), deqb.end(), deql[i]);

@@ -12,8 +12,9 @@ class RPN
 		~RPN();
 		RPN(const RPN& copy);
 		RPN& operator=(const RPN& copy);
-
 		RPN(const std::string& exp);
+
+	private :
 
 		void	check_exp(const std::string& exp);
 		void	modif_stack(char c);
