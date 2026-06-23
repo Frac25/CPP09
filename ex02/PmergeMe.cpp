@@ -50,6 +50,58 @@ std::ostream& operator<<(std::ostream& os, const std::deque<int> &deq)
 	return(os);
 }
 
+static size_t jacobsthal(size_t n)
+{
+	if (n == 0)
+		return 0;
+	if (n == 1)
+		return 1;
+
+	size_t a = 0;
+	size_t b = 1;
+
+	for (size_t i = 2; i <= n; ++i)
+	{
+		size_t tmp = b + 2 * a;
+		a = b;
+		b = tmp;
+	}
+	return b;
+}
+
+std::vector<size_t> buildJacobOrder(size_t size)
+{
+	std::vector<size_t> order;
+
+	if (size == 0)
+		return order;
+
+	order.push_back(0);
+
+	size_t prev = 1;
+	size_t k = 3;
+
+	while (true)
+	{
+		size_t curr = jacobsthal(k);
+
+		if (curr >= size)
+			curr = size;
+
+		for (size_t i = curr; i > prev; --i)
+			order.push_back(i - 1);
+
+		if (curr == size)
+			break;
+
+		prev = curr;
+		++k;
+	}
+
+	return order;
+}
+
+
 void PmergeMe::sort(std::vector<int>& vec)
 {
 	//recursive end condition
@@ -90,13 +142,33 @@ void PmergeMe::sort(std::vector<int>& vec)
 	//Recursiv sort
 	sort(vecb);
 
-	//insert little in big
+	//insert little in big whith jacobstal
+	std::vector<size_t> order = buildJacobOrder(vecl.size());
+
+	for (size_t i = 0; i < order.size(); ++i)
+	{
+		size_t idx = order[i];
+
+		if (vecl[idx] == -1)
+			continue;
+
+		std::vector<int>::iterator pos =
+			std::lower_bound(
+				vecb.begin(),
+				vecb.end(),
+				vecl[idx]);
+
+		vecb.insert(pos, vecl[idx]);
+	}
+
+/*	//insert little in big
 	for(size_t i = 0; i < vecl.size(); i++)
 	{
 		std::vector<int>::iterator pos = std::lower_bound(vecb.begin(), vecb.end(), vecl[i]);
 		if(vecl[i] != -1)
 			vecb.insert(pos, vecl[i]);
 	}
+*/
 	//register vecb
 	vec = vecb;
 }
@@ -137,13 +209,33 @@ void PmergeMe::sort(std::deque<int>& deq)
 	//Recursiv sort
 	sort(deqb);
 
+	//insert little in big whith jacostal
+	std::vector<size_t> order = buildJacobOrder(deql.size());
+
+	for (size_t i = 0; i < order.size(); ++i)
+	{
+		size_t idx = order[i];
+
+		if (deql[idx] == -1)
+			continue;
+
+		std::deque<int>::iterator pos =
+			std::lower_bound(
+				deqb.begin(),
+				deqb.end(),
+				deql[idx]);
+
+		deqb.insert(pos, deql[idx]);
+	}
+
 	//insert little in big
-	for(size_t i = 0; i < deql.size(); i++)
+/*	for(size_t i = 0; i < deql.size(); i++)
 	{
 		std::deque<int>::iterator pos = std::lower_bound(deqb.begin(), deqb.end(), deql[i]);
 		if(deql[i] != -1)
 			deqb.insert(pos, deql[i]);
 	}
+*/
 	//register deqb
 	deq = deqb;
 
