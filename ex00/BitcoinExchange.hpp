@@ -29,7 +29,7 @@ class Btc
 
 	std::map<std::string , double> db;
 	double value_d;
-	double rate;	
+	double rate;
 
 
 };
